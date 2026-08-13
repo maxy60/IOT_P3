@@ -7,7 +7,6 @@ metadata:
 
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
   
   selector:
     matchLabels:
@@ -21,7 +20,7 @@ spec:
     spec:
       containers:
         - name: wil-playground
-          image: wil42/playground:v1
+          image: wil42/playground:v2
 
           ports:
             - containerPort: 8888
