@@ -42,29 +42,3 @@ spec:
     - protocol: TCP
       port: 8888
       targetPort: 8888
-
----
-# Ingress: Expose the App from the exterior of the CLUSTER
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-
-metadata:
-  name: wil-ingress             # Ingress name (used for network rule)
-  namespace: dev                # Target ArgoCD namespace
-
-spec:
-  rules:
-    - host: wil.local          # Must set up /etc/hosts pointing to the IP of the CLUSTER. Used for Host header.
-
-      http:
-        paths:
-          - path: /            # ... Starting with
-            pathType: Prefix   # Every incoming HTTP requests ...
-
-            backend:
-              service:                        # Service used within wil.local.http requests
-                name: wil-playground-service  # Target service as backend
-
-                port:
-                  number: 8888                # Exposed port for incoming requests
-
